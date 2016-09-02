@@ -17,5 +17,6 @@ $app->get('/', function () use ($app) {
 
 $app->group(['prefix' => 'api/v1','namespace' => 'App\Http\Controllers'], function($app)
 {
-    $app->get('service','BookController@index');
+    $app->get('service','ServiceController@index');
+    $app->get('orcamento','ServiceController@getOrcamento');
 });
