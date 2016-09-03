@@ -8,14 +8,11 @@
   </head>
   <body ng-controller="OrcabioController">
     <form>
-      <select name="service1">
-        <option ng-repeat="service in services" value="{{service.id}}">{{service.description}}</option>
-      </select>
-      <select name="service2">
-        <option ng-repeat="service in services" value="{{service.id}}">{{service.description}}</option>
-      </select>
-      <input type="label" value="orcamento"/>
-      <input type="button" value="botao"/>
+      <select ng-model="serviceList" ng-options="service.description for service in services track by service.id"/>
+    </select>
+      <select ng-model="serviceList2" ng-options="service.description for service in services track by service.id"/>
+      <input type="label" ng-model="orcamento"/>
+      <input type="button" value="botao" ng-click="calcularOrcamento()"/>
     </form>
       <p>Nothing here {{'yet' + '!'}}</p>
 
