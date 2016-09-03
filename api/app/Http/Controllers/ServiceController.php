@@ -12,19 +12,35 @@ class ServiceController extends Controller{
   public $AllServices;
 
   public function __construct(){
-    $this->AllServices=[["id"=>"1","description"=>"compra", "value"=>100],["id"=>"2","description"=>"venda", "value"=>200],["id"=>"3","description"=>"more", "value"=>300]];
+    $this->AllServices=[["id"=>"1","description"=>"frontend", "value"=>500],["id"=>"2","description"=>"backend", "value"=>500],["id"=>"3","description"=>"app", "value"=>500]];
   }
   public function index(){
-     $Services=[["id"=>"1","description"=>"compra"],["id"=>"2","description"=>"venda"],["id"=>"3","description"=>"more"]];
+     $Services=[["id"=>"1","description"=>"frontend"],["id"=>"2","description"=>"backend"],["id"=>"3","description"=>"app"]];
      return response()->json($Services);
   }
 
   public function getOrcamento(Request $request){
      $response=["value"=>0];
-     $input=$request->only(["service1","service2"]);
-     $response["value"]=$this->calculate($input["service1"],$input["service2"]);
-     return response()->json($response)
-                      ->header('Access-Control-Allow-Origin', 'http://orcabio.com');
+     $total=0;
+     $discount=0;
+     $input=$request->only(["services"]);
+     if ($input["services"]!=null){
+       switch(sizeof($input["services"])){
+         case 2:
+          $discount=200;
+          break;
+         case 3:
+          $discount=400;
+          break;
+       }
+       foreach($input["services"] as $s){
+         foreach($this->AllServices as $so){
+           if ($s==$so["id"]) $total+=$so["value"];
+         }
+       }
+       }
+     $response["value"]=$total-$discount;
+     return response()->json($response);
   }
 
   public function calculate($service1,$service2){

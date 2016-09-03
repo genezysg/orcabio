@@ -7,7 +7,6 @@ var option=[];
 orcabioApp.controller('OrcabioController',function OrcabioController($http,$scope,$filter){
   $http.get(orcabioapi+"service").then(function(response) {
         $scope.services=response.data;
-        $scope.services.push({description:"Escolha"})
   });
 
   $scope.calcularOrcamento= function(serviceid){
@@ -22,7 +21,7 @@ orcabioApp.controller('OrcabioController',function OrcabioController($http,$scop
     $http.get(orcabioapi+"orcamento",{
         params:{"services[]": pmt}
      }).then(function(response) {
-          $scope.orcamento="Valor: "+response.data.value;
+          $scope.orcamento=response.data.value;
     });
   };
 
