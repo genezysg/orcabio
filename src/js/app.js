@@ -5,6 +5,7 @@ var orcabioapi="http://api.orcabio.com/api/v1/";
 orcabioApp.controller('OrcabioController',function OrcabioController($http,$scope){
   $http.get(orcabioapi+"service").then(function(response) {
         $scope.services=response.data;
+        $scope.services.push({description:"Escolha"})
   });
 
   $scope.calcularOrcamento= function(){

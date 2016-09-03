@@ -8,13 +8,16 @@
   </head>
   <body ng-controller="OrcabioController">
     <form>
-      <select ng-model="serviceList" ng-options="service.description for service in services track by service.id"/>
-    </select>
-      <select ng-model="serviceList2" ng-options="service.description for service in services track by service.id"/>
-      <input type="label" ng-model="orcamento"/>
-      <input type="button" value="botao" ng-click="calcularOrcamento()"/>
+      Serviço 1:
+      <select ng-model="serviceList" ng-options="service.description for service in services track by service.id" ng-change="calcularOrcamento()">
+        <option style="display:none" value="">select a type</option>
+      </select>
+      Serviço 2:
+      <select ng-model="serviceList2" ng-options="service.description for service in services track by service.id" ng-change="calcularOrcamento()"/>
+      </select>
     </form>
-      <p>Nothing here {{'yet' + '!'}}</p>
+      <p>Orçamento</p>
+      <p ng-bind="orcamento"/>
 
   </body>
 </html>
