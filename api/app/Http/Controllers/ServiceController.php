@@ -12,7 +12,7 @@ class ServiceController extends Controller{
   public $AllServices;
 
   public function __construct(){
-    $this->AllServices=[["id"=>"1","description"=>"frontend", "value"=>500],["id"=>"2","description"=>"backend", "value"=>500],["id"=>"3","description"=>"app", "value"=>500]];
+    $this->AllServices=[["id"=>"1","description"=>"frontend", "value"=>500],["id"=>"2","description"=>"backend", "value"=>600],["id"=>"3","description"=>"app", "value"=>700]];
   }
   public function index(){
      $Services=[["id"=>"1","description"=>"frontend"],["id"=>"2","description"=>"backend"],["id"=>"3","description"=>"app"]];
@@ -30,7 +30,7 @@ class ServiceController extends Controller{
           $discount=200;
           break;
          case 3:
-          $discount=400;
+          $discount=300 ;
           break;
        }
        foreach($input["services"] as $s){
