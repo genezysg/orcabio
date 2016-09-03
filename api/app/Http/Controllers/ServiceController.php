@@ -23,7 +23,8 @@ class ServiceController extends Controller{
      $response=["value"=>0];
      $input=$request->only(["service1","service2"]);
      $response["value"]=$this->calculate($input["service1"],$input["service2"]);
-     return response()->json($response);
+     return response()->json($response)
+                      ->header('Access-Control-Allow-Origin', 'http://orcabio.com');
   }
 
   public function calculate($service1,$service2){
